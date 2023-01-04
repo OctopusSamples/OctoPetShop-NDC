@@ -51,8 +51,18 @@ jobs:
       uses: OctopusDeploy/push-build-information-action@v1
       with:
         packages: |
-          octopussamples/octopetshop-web-enterprise
-          octopussamples/octopetshop-productservice-enterprise
-          octopussamples/octopetshop-shoppingcartservice-enterprise
-          octopussamples/octopetshop-database-enterprise
+          octopussamples/octopetshop-web-ndc
+          octopussamples/octopetshop-productservice-ndc
+          octopussamples/octopetshop-shoppingcartservice-ndc
+          octopussamples/octopetshop-database-ndc
         version: ${{ env.PACKAGE_VERSION }}
+        
+    - name: Install Octopus CLI
+      uses: OctopusDeploy/install-octopus-cli-action@v1
+      with:
+        version: latest
+
+    - name: Create OctoPetShop release
+      uses: OctopusDeploy/create-release-action@v2
+      with:
+        project: OctoPetShop
