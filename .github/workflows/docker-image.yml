@@ -48,7 +48,7 @@ jobs:
         docker push octopussamples/octopetshop-database-ndc:$PACKAGE_VERSION
         
     - name: Push build information
-      uses: OctopusDeploy/push-build-information-action@v1
+      uses: OctopusDeploy/push-build-information-action@v3
       with:
         packages: |
           octopussamples/octopetshop-web-ndc
