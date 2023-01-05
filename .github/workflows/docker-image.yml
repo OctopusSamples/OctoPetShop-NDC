@@ -63,6 +63,9 @@ jobs:
         version: latest
 
     - name: Create OctoPetShop release
-      uses: OctopusDeploy/create-release-action@v2
+      uses: OctopusDeploy/create-release-action@v3.01
       with:
         project: OctoPetShop
+        git_ref: Main
+        
+ 
