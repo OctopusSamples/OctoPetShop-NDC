@@ -26,6 +26,19 @@ jobs:
         docker build ./OctopusSamples.OctoPetShop.Web --file ./OctopusSamples.OctoPetShop.Web/dockerfile --tag octopussamples/octopetshop-web-ndc:$PACKAGE_VERSION
         docker push octopussamples/octopetshop-web-ndc:$PACKAGE_VERSION
         
+  Push-build-information:
+  
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: OctopusDeploy/push-build-information-action@v3
+        name: Push Build Information
+        with:
+          packages: |
+             octopussamples/octopetshop-ndc
+          versoion: ${{ env.PACKAGE_VERSION }}
+  
+        
 
       
    
