@@ -9,11 +9,13 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.Set Version.outputs.test }}
 
     steps:
     - uses: actions/checkout@v3
     - name: Set Version
-      run: echo "PACKAGE_VERSION=$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+      run: echo "PACKAGE_VERSION=$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER" >> $GITHUB_OUTPUT
     
     - name: Login to DockerHub
       uses: docker/login-action@v2
@@ -24,7 +26,7 @@ jobs:
     - name: Build OctoPetShop web container
       run: |
         docker build ./OctopusSamples.OctoPetShop.Web --file ./OctopusSamples.OctoPetShop.Web/dockerfile --tag octopussamples/octopetshop-web-ndc:$PACKAGE_VERSION
-        docker push octopussamples/octopetshop-web-ndc:$PACKAGE_VERSION
+        docker push octopussamples/octopetshop-web-ndc:${{needs.build.outputs.output1}}
         
   Push-build-information:
   
@@ -36,7 +38,7 @@ jobs:
         with:
           packages: |
              octopussamples/octopetshop-ndc
-          versoion: $PACKAGE_VERSION
+          versoion: ${{needs.build.outputs.output1}}
   
         
 
