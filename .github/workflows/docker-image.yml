@@ -67,5 +67,9 @@ jobs:
       with:
         project: OctoPetShop
         git_ref: main
+        server: $OCTOPUS_HOST
+        api_key: $OCTOPUS_API_KEY
+        space: $OCTOPUS_SPACE
+        
         
  
