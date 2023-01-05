@@ -36,7 +36,7 @@ jobs:
         with:
           packages: |
              octopussamples/octopetshop-ndc
-          versoion: ${{ env.PACKAGE_VERSION }}
+          versoion: $PACKAGE_VERSION
   
         
 
