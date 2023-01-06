@@ -45,7 +45,7 @@ jobs:
         with:
           packages: |
              octopussamples/octopetshop-ndc
-          version: ${{ needs.build.outputs.version }}
+          version: 10.1.1
   
         
 
