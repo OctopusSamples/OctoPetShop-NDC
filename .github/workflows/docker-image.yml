@@ -33,6 +33,13 @@ jobs:
        run: |    
         docker build ./OctopusSamples.OctoPetShop.Web --file ./OctopusSamples.OctoPetShop.Web/dockerfile --tag octopussamples/octopetshop-web-ndc:${{ steps.version-generator.outputs.version }}
         docker push octopussamples/octopetshop-web-ndc:${{ steps.version-generator.outputs.version }}
+      
+     - name: Upload Artifact
+       uses: actions/upload-artifact@v3
+       with:
+          name: octopetshop-web
+          path: octopetshop-web-ndc
+        
         
   Push-build-information:
        
