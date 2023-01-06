@@ -22,12 +22,14 @@ jobs:
         username: ${{ secrets.DOCKERHUB_SAMPLES_USERNAME }}
         password: ${{ secrets.DOCKERHUB_SAMPLES_PASSWORD }}
         
+     - name: Set Version Number
+       id: version-generator
+       run: echo "version=$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER" >> $GITHUB_OUTPUT
+        
      - name: Build OctoPetShop web container
-       id: build
-       run: |
-        echo "version=$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER" >> $GITHUB_OUTPUT
-        docker build ./OctopusSamples.OctoPetShop.Web --file ./OctopusSamples.OctoPetShop.Web/dockerfile --tag octopussamples/octopetshop-web-ndc:${{ steps.build.outputs.version }}
-        docker push octopussamples/octopetshop-web-ndc:${{ steps.build.outputs.version }}
+       run: |    
+        docker build ./OctopusSamples.OctoPetShop.Web --file ./OctopusSamples.OctoPetShop.Web/dockerfile --tag octopussamples/octopetshop-web-ndc:${{ steps.version-generator.outputs.version }}
+        docker push octopussamples/octopetshop-web-ndc:${{ steps.version-generator.outputs.version }}
         
   Push-build-information:
        
