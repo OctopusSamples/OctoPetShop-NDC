@@ -23,6 +23,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_SAMPLES_PASSWORD }}
         
      - name: Build OctoPetShop web container
+       id: build
        run: |
         echo "version=$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER" >> $GITHUB_OUTPUT
         docker build ./OctopusSamples.OctoPetShop.Web --file ./OctopusSamples.OctoPetShop.Web/dockerfile --tag octopussamples/octopetshop-web-ndc:${{ steps.build.outputs.version }}
