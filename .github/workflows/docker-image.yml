@@ -36,7 +36,7 @@ jobs:
         
   Push-build-information:
        
-      name: Push Build Information
+      name: Push Build Information 🐙
       needs: build 
       runs-on: ubuntu-latest
       
@@ -56,7 +56,7 @@ jobs:
   Create-Octopus-Release:
   
       name: Create Octopus Release 🐙
-      needs: build
+      needs: [build, Push-build-information]
       runs-on: ubuntu-latest
       
       env:
