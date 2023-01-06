@@ -36,6 +36,7 @@ jobs:
         
   Push-build-information:
        
+      name: Push Build Information
       needs: build 
       runs-on: ubuntu-latest
       
@@ -51,6 +52,25 @@ jobs:
         with:
           version: ${{ needs.build.outputs.version }}
           packages: octopussamples/octopetshop-ndc
+          
+  Create-Octopus-Release:
+  
+      name: Create Octopus Release
+      needs: build
+      runs-on: ubuntu-latest
+      
+      env:
+        OCTOPUS_URL: ${{ secrets.OCTOPUS_URL }}
+        OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_KEY }}
+        OCTOPUS_SPACE: ${{ secrets.OCTOPUS_SPACE }}
+        
+      steps:
+      - uses: OctopusDeploy/create-release-action@v3
+        with:
+          project: OctoPetShop
+          git_ref: main
+      
+      
              
          
   
