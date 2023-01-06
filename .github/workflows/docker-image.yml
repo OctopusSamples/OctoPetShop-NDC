@@ -55,7 +55,7 @@ jobs:
           
   Create-Octopus-Release:
   
-      name: Create Octopus Release
+      name: Create Octopus Release 🐙
       needs: build
       runs-on: ubuntu-latest
       
