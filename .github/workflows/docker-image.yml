@@ -98,7 +98,7 @@ jobs:
           release_number: ${{ needs.create-octopus-release.outputs.release_number }}
           environments: |
             development
-            test
+
         
 
       
