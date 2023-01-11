@@ -94,7 +94,7 @@ jobs:
         with:
           project: OctoPetShop
           release_number: ${{ steps.create-release.outputs.release_number }}
-          environemnts: |
+          environments: |
             development
             test
         
