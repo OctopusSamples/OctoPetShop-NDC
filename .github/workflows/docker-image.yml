@@ -76,6 +76,31 @@ jobs:
         with:
           project: OctoPetShop
           git_ref: main
+          
+  Create-deploy-Release:
+  
+      name: Deploy Octopus Release
+      needs: [build, Push-build-information, Create-Octopus-Release]
+      runs-on: ubuntu-latest
+      
+      env:
+        OCTOPUS_URL: ${{ secrets.OCTOPUS_URL }}
+        OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_KEY }}
+        OCTOPUS_SPACE: ${{ secrets.OCTOPUS_SPACE }}
+      
+      steps:
+      - uses: OctopusDeploy/deploy-release-action@v3.0.1
+        with:
+          project: OctoPetShop
+          release_number: ${{ steps.create_release.outputs.release_number }}
+          environemnts: |
+            development
+            test
+        
+
+      
+        
+        
       
       
              
