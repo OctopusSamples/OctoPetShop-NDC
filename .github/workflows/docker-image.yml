@@ -93,7 +93,7 @@ jobs:
       - uses: OctopusDeploy/deploy-release-action@v3.0.1
         with:
           project: OctoPetShop
-          release_number: ${{ steps.create-release.outputs.release_number }}
+          release_number: ${{ needs.create-octopus-release.outputs.release_number }}
           environments: |
             development
             test
