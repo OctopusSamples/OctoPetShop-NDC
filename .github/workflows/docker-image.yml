@@ -82,7 +82,7 @@ jobs:
           
   Create-deploy-Release:
   
-      name: Deploy Octopus Release
+      name: Deploy Octopus Release 🐙
       needs: [build, Push-build-information, Create-Octopus-Release]
       runs-on: ubuntu-latest
       
