@@ -59,7 +59,7 @@ jobs:
         name: Push Build Information
         with:
           version: ${{ needs.build.outputs.version }}
-          packages: octopussamples/octopetshop-ndc
+          packages: octopussamples/octopetshop-web-ndc
           
   Create-Octopus-Release:
   
