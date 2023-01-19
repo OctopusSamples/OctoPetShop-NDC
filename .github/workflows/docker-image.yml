@@ -108,7 +108,7 @@ jobs:
           
       - name: Overwrite Markdown
         run: |
-          echo ${{ steps.queue_deployments.outputs.server_tasks }}
+          echo [like this](http://someurl)
 
             
             
