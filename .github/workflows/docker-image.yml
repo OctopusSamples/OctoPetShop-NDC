@@ -105,11 +105,6 @@ jobs:
         uses: OctopusDeploy/await-task-action@v3
         with:
           server_task_id: ${{ fromJson(steps.queue_deployments.outputs.server_tasks)[0].serverTaskId }}
-          
-      - name: Overwrite Markdown
-        run: |
-          echo [like this](http://someurl)
-
             
             
 
