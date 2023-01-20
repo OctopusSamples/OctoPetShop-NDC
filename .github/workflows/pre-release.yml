@@ -1,8 +1,6 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -28,12 +26,12 @@ jobs:
      - name: Set Version Number
 
        id: version-generator
-       run: echo "version=$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER" >> $GITHUB_OUTPUT
+       run: echo "version=$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER-alpha" >> $GITHUB_OUTPUT
         
      - name: Build OctoPetShop web container
        run: |    
         docker build ./OctopusSamples.OctoPetShop.Web --file ./OctopusSamples.OctoPetShop.Web/dockerfile --tag octopussamples/octopetshop-web-ndc:${{ steps.version-generator.outputs.version }}
-        docker push octopussamples/octopetshop-web-ndc-alpha:${{ steps.version-generator.outputs.version }}
+        docker push octopussamples/octopetshop-web-ndc:${{ steps.version-generator.outputs.version }}
       
         
         
@@ -54,7 +52,7 @@ jobs:
         name: Push Build Information
         with:
           version: ${{ needs.build.outputs.version }}
-          packages: octopussamples/octopetshop-web-ndc-alpha
+          packages: octopussamples/octopetshop-web-ndc
           
   Create-Octopus-Release:
   
