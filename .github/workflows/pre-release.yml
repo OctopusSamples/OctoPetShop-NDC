@@ -71,7 +71,7 @@ jobs:
         id: "create-release"
         with:
           project: POS Client
-          channel: Development
+          channel: Alpha
       outputs: 
        release_number: ${{ steps.create-release.outputs.release_number }}
           
@@ -90,7 +90,7 @@ jobs:
       - uses: OctopusDeploy/deploy-release-action@v3.0.1
         id: "queue_deployments"
         with:
-          project: OctoPetShop
+          project: POS Client
           release_number: ${{ needs.create-octopus-release.outputs.release_number }}
           environments: |
             development
