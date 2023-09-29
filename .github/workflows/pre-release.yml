@@ -92,6 +92,7 @@ jobs:
         with:
           project: POS Client
           release_number: ${{ needs.create-octopus-release.outputs.release_number }}
+          tenant: _internal 
           environments: |
             development
             
