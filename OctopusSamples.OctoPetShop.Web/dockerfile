@@ -8,6 +8,7 @@ RUN ["dotnet", "build", "--configuration", "release"]
 
 EXPOSE 5000 5001
 
+
 ENV ASPNETCORE_URLS="http://+:5000;https://+:5001"
 ENV ASPNETCORE_ENVIRONMENT="Production"
 RUN ["dotnet", "dev-certs", "https"]
